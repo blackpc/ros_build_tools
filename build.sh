@@ -1,40 +1,42 @@
 #!/bin/bash
 
+function cecho {
+    echo -e '\E[37;44m'"\033[1m$1\033[0m"
+}
+
 if [[ $# = 0 ]]; then
-    echo "Usage: $0 workspace-name repository-url"
+    cecho "Usage: $0 workspace-name repository-url"
     exit
 fi
 
 workspace=/home/cogni/workspaces/$1
 repository=$2
 
-echo "===================================================="
-echo "Repository: $repository"
-echo "Workspace : $workspace"
-echo "===================================================="
-echo "@ Creating catkin workspace..."
-echo " - Creating workspace directory..."
+
+
+cecho "===================================================="
+cecho "Repository: $repository"
+cecho "Workspace : $workspace"
+cecho "===================================================="
+cecho "@ Creating catkin workspace..."
+cecho " - Creating workspace directory..."
 mkdir workspace -p
-echo " - Initializing workspace..."
+cecho " - Initializing workspace..."
 cd $workspace
 mkdir src
 cd src
 catkin_init_workspace
-echo " - Compiling empty workspace..."
+cecho " - Compiling empty workspace..."
 cd ..
 catkin_make
-echo " - Sourcing setup.bash..."
+cecho " - Sourcing setup.bash..."
 source devel/setup.bash
-echo " - Cloning repository..."
+cecho " - Cloning repository..."
 cd src
 git clone $repository
 cd ..
-echo " - Building workspace..."
+cecho " - Building workspace..."
 catkin_make
-echo " - Installing workspace..."
+cecho " - Installing workspace..."
 catkin_make install
-echo "@ Done"
-
-
-
-
+cecho "@ Done"
