@@ -12,15 +12,13 @@ fi
 workspace=/home/cogni/workspaces/$1
 repository=$2
 
-
-
 cecho "===================================================="
 cecho "Repository: $repository"
 cecho "Workspace : $workspace"
 cecho "===================================================="
 cecho "@ Creating catkin workspace..."
 cecho " - Creating workspace directory..."
-mkdir workspace -p
+mkdir $workspace -p
 cecho " - Initializing workspace..."
 cd $workspace
 mkdir src
