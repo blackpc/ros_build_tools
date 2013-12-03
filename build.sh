@@ -27,15 +27,15 @@ cd src
 catkin_init_workspace
 cecho " - Compiling empty workspace..."
 cd ..
-catkin_make
+catkin_make > /dev/null
 cecho " - Sourcing setup.bash..."
 source devel/setup.bash
 cecho " - Cloning repository..."
 cd src
-git clone $repository
+git clone $repository > /dev/null
 cd ..
 cecho " - Building workspace..."
-catkin_make
+catkin_make > /dev/null
 cecho " - Installing workspace..."
-catkin_make install
+catkin_make install > /dev/null
 cecho "@ Done"
