@@ -17,6 +17,7 @@ cecho "Repository: $repository"
 cecho "Workspace : $workspace"
 cecho "===================================================="
 cecho "@ Creating catkin workspace..."
+rm $workspace -rf
 cecho " - Creating workspace directory..."
 mkdir $workspace -p
 cecho " - Initializing workspace..."
