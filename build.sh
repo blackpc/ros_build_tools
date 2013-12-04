@@ -1,5 +1,13 @@
 #!/bin/bash
 
+function recho {
+    echo -e '\E[37;41m'"\033[1m$1\033[0m"
+}
+
+function gecho {
+    echo -e '\E[37;42m'"\033[1m$1\033[0m"
+}
+
 function cecho {
     echo -e '\E[37;44m'"\033[1m$1\033[0m"
 }
@@ -27,7 +35,7 @@ cd src
 catkin_init_workspace
 cecho " - Compiling empty workspace..."
 cd ..
-catkin_make > /dev/null
+catkin_make > /dev/null && (gecho "Successfuly done") || (recho "Unexpected error" && exit)
 cecho " - Sourcing setup.bash..."
 source devel/setup.bash
 cecho " - Cloning repository..."
@@ -35,7 +43,7 @@ cd src
 git clone $repository > /dev/null
 cd ..
 cecho " - Building workspace..."
-catkin_make > /dev/null
+catkin_make > /dev/null && (gecho "Successfuly done") || (recho "Unexpected error" && exit)
 cecho " - Installing workspace..."
-catkin_make install > /dev/null
+catkin_make install > /dev/null && (gecho "Successfuly done") || (recho "Unexpected error" && exit)
 cecho "@ Done"
