@@ -20,10 +20,10 @@ function checked_run {
     return_value=$?
 
     if [[ $return_value != 0 ]]; then
-        recho "└─╼ Unexpected error"
+        recho "└─╼ '$1' returned error"
         exit 1
     else
-        gecho "└─╼ Successfuly done"        
+        gecho "└─╼ '$1' Successfuly done"        
     fi
     echo
 }
@@ -57,8 +57,6 @@ cecho "Workspace : $workspace"
 cecho "==============================================================="
 cecho "@ Creating catkin workspace..."
 echo
-
-checked_run "asd asd" echo 'hello world'
 
 run "Removing workspace if already exitst" true rm $workspace -rf
 checked_run "Creating workspace directory..." mkdir $workspace -p
